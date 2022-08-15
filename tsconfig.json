@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "baseUrl": ".",
+        "module": "ESNext",
+        "target": "ES5",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "outDir": "./dist"
+    }
+}
