@@ -4,7 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "webpack",
+		"build:start": "npm run build && npm run start",
+		"dist:win": "pkg ./dist/main.min.js -t node16-win-x64 -o ./dist/simrep.exe -C Brotli",
+		"start": "node ./dist/main.min.js"
 	},
 	"keywords": [],
 	"license": "MIT",
