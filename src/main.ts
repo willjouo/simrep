@@ -113,26 +113,6 @@ const Server = new class {
         });
 
         // Routes
-        this.expressServer.get('/:project/:file', async (req: express.Request, res: express.Response)=>{
-            const response: any = this.createJSONResponse(req);
-            try {
-                if(!this.isValidName(req.params.project) || !this.isValidName(req.params.file)){
-                    throw new Error();
-                }
-
-                const filePath: string = this.getPath(path.join('data/files', req.params.project, req.params.file));
-                await fsPromises.access(filePath);
-                res.download(filePath);
-            }
-            catch {
-                response.error = {
-                    code: 404,
-                    message: 'Not found'
-                };
-                res.status(404).json(response);
-            }
-        });
-
         this.expressServer.post('/api/upload', uploader.single('file'), async (req: express.Request, res: express.Response)=>{
             const response: any = this.createJSONResponse(req);
 
@@ -198,6 +178,27 @@ const Server = new class {
                     items: content
                 };
                 res.json(response);
+            }
+            catch {
+                response.error = {
+                    code: 404,
+                    message: 'Not found'
+                };
+                res.status(404).json(response);
+            }
+        });
+
+        // Files
+        this.expressServer.get('/:project/:file', async (req: express.Request, res: express.Response)=>{
+            const response: any = this.createJSONResponse(req);
+            try {
+                if(!this.isValidName(req.params.project) || !this.isValidName(req.params.file)){
+                    throw new Error();
+                }
+
+                const filePath: string = this.getPath(path.join('data/files', req.params.project, req.params.file));
+                await fsPromises.access(filePath);
+                res.download(filePath);
             }
             catch {
                 response.error = {
