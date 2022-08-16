@@ -1,7 +1,7 @@
 # Simrep
 
-Simrep is a *sim*ple *rep*ository service. It is aim for single hobbyists or
-small startup/team which don't need huge alternatives and for on-prem needs.
+Simrep is a **sim**ple **rep**ository service. It is aim for single hobbyists or
+small startups/teams which don't need huge alternatives and for on-prem needs.
 
 ## Features
 
@@ -36,29 +36,24 @@ SECRET_UPLOADER=your_secret_key
 SECRET_DOWNLOADER=your_secret_key
 ```
 
-### `simrep init` command
-
-You can use `simrep init` in the command line. It will ask you for your port and
-secrets key, and will create a `.env` file with your inputs.
-
 ## Usage
 
 Starts the server with `./simrep`. Use a `systemd` script, `PM2` or an
-equivalent to manage to life of simrep. Achieve HTTPS with a reverse proxy
-like nginx or caddy.
+equivalent to manage the life of simrep. Achieve HTTPS and/or logs with a
+reverse proxy like nginx or caddy.
 
 ### Logs
 
 Ues a reverse proxy for logging access.
 
-### API
+## API
 
 All calls must provide a key in the `key` query parameters in the url. For
 example: `http://localhost/api/upload?key=myKey`. The server responds in JSON
 with a structure similar to the [Google Style Guide](https://google.github.io/styleguide/jsoncstyleguide.xml),
 following the `apiVersion`, `context` and `error` properties and *some* others.
 
-#### `POST /api/upload`
+### `POST /api/upload`
 
 Uploads a new file in the repository. Need the `SECRET_UPLOADER` key.
 
@@ -69,7 +64,7 @@ Uploads a new file in the repository. Need the `SECRET_UPLOADER` key.
   * `file` is your file.
 * `project` and `filename` should only contains `a-zA-Z0-9.-_` characters ;
 
-#### `GET /api/projects`
+### `GET /api/projects`
 
 Returns a list of all projects. Example of response:
 
@@ -89,7 +84,7 @@ Returns a list of all projects. Example of response:
 }
 ```
 
-#### `GET /api/[project]/list`
+### `GET /api/[project]/list`
 
 Lists all files for a project. Example of response:
 
@@ -109,6 +104,6 @@ Lists all files for a project. Example of response:
 }
 ```
 
-#### `GET /[project]/[file]`
+### `GET /[project]/[file]`
 
 Downloads a file.
