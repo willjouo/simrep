@@ -6,8 +6,8 @@
 	"scripts": {
 		"build": "webpack",
 		"build:start": "npm run build && npm run start",
-		"dist:linux": "pkg ./dist/main.min.js -t node16-linux-x64 -o ./dist/simrep -C Brotli",
-		"dist:win": "pkg ./dist/main.min.js -t node16-win-x64 -o ./dist/simrep.exe -C Brotli",
+		"dist:linux": "pkg ./dist/main.min.js -t node16-linux-x64 -o ./dist/simrep-linux-x64 -C Brotli",
+		"dist:win": "pkg ./dist/main.min.js -t node16-win-x64 -o ./dist/simrep-windows-x64.exe -C Brotli",
 		"start": "node ./dist/main.min.js"
 	},
 	"keywords": [],
