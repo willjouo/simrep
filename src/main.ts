@@ -9,6 +9,8 @@ import * as multer from 'multer';
 const SERVICE_VERSION: string = '1.0.0';
 const API_VERSION: string = '1.0';
 
+const DIRNAME: string = __dirname.includes('snapshot') ? path.dirname(process.execPath) : __dirname;
+
 const Server = new class {
     private expressServer: express.Express;
 
@@ -28,7 +30,7 @@ const Server = new class {
     }
 
     private getPath(subpath: string): string {
-        return path.join(__dirname, subpath);
+        return path.join(DIRNAME, subpath);
     }
 
     public createJSONResponse(request: express.Request): any {
