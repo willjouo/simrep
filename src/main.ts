@@ -51,12 +51,10 @@ const Server = new class {
         await Logger.info(`Simple Repository server v${SERVICE_VERSION}`);
 
         // Check for folders
-        Logger.debug('Creating folders...');
         await this.ensureFolderExists(this.getPath('data/files'));
         await this.ensureFolderExists(this.getPath('data/uploads'));
 
         // Config
-        Logger.debug('Loading configuration...');
         dotenv.config();
         const defaultOptions: any = {
             PORT: 80,
@@ -75,12 +73,10 @@ const Server = new class {
         }
 
         // Handle abord signal / keyboard
-        Logger.debug('Hooking on signals...');
         process.on('SIGINT', this.dispose);
         process.on('SIGTERM', this.dispose);
 
         // Start HTTP server
-        Logger.debug('Creating express...');
         this.expressServer = express();
         this.expressServer.set('trust proxy', `${parseInt(process.env.PROXY)}` === `${process.env.PROXY}` ? parseInt(process.env.PROXY as string) : process.env.PROXY);
 
@@ -211,7 +207,6 @@ const Server = new class {
 
         // 404
         this.expressServer.use(async (req: express.Request, res: express.Response)=>{
-            Logger.debug('route: 404');
             const response: any = this.createJSONResponse(req);
             response.error = {
                 code: 404,
@@ -232,9 +227,8 @@ const Server = new class {
         });
 
         // Start main server on HTTP
-        Logger.debug('Start listening...');
         http.createServer(this.expressServer).listen(process.env.PORT, ()=>{
-            Logger.info(`Now listening on port ${process.env.PORT}.`);
+            Logger.info(`Now listening on port ${process.env.PORT}`);
         });
     }
 
