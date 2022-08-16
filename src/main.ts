@@ -43,12 +43,12 @@ const Server = new class {
 
     public async start(): Promise<void> {
         // Logger
-        Logger.initialize({
+        await Logger.initialize({
             console: true,
             file: true,
             fileFolder: this.getPath('data/logs')
         });
-        Logger.info(`Simple Repository server v${SERVICE_VERSION}`);
+        await Logger.info(`Simple Repository server v${SERVICE_VERSION}`);
 
         // Check for folders
         Logger.debug('Creating folders...');
@@ -70,7 +70,7 @@ const Server = new class {
             }
         }
         if(process.env.SECRET_UPLOAD.trim().length === 0 || process.env.SECRET_DOWNLOAD.trim().length === 0){
-            Logger.error('Secrets are empty! Aborting...');
+            await Logger.error('Secrets are empty! Aborting...');
             process.exit(1);
         }
 
