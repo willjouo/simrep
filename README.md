@@ -42,10 +42,6 @@ Starts the server with `./simrep`. Use a `systemd` script, `PM2` or an
 equivalent to manage the life of simrep. Achieve HTTPS and/or logs with a
 reverse proxy like nginx or caddy.
 
-### Logs
-
-Ues a reverse proxy for logging access.
-
 ## API
 
 All calls must provide a key in the `key` query parameters in the url. For
