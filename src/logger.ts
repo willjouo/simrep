@@ -67,9 +67,6 @@ export const Logger = new class {
      * @param message 
      */
     public async log(severity: LoggerSeverity, message: string): Promise<void> {
-        const labels: LoggerLabels = {
-            level: severity
-        };
         const fullLine: string = `${this.getDate()} ${severity.toUpperCase()} ${message}`;
 
         // File
