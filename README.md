@@ -58,7 +58,13 @@ Uploads a new file in the repository. Need the `SECRET_UPLOADER` key.
   * `project` is the name of your project ;
   * `filename` is the name of your file on the server ;
   * `file` is your file.
-* `project` and `filename` should only contains `a-zA-Z0-9.-_` characters ;
+* `project` and `filename` should only contains `a-zA-Z0-9.-_` characters.
+
+Example to upload a file with curl:
+
+```
+$ curl -F project=myproject -F filename=project-1.0.0.deb -F file=@build.deb https://repo.example.com/api/upload?key=my_uploader_key
+```
 
 ### `GET /api/projects`
 
