@@ -69,11 +69,6 @@ export const Logger = new class {
     public async log(severity: LoggerSeverity, message: string): Promise<void> {
         const fullLine: string = `${this.getDate()} ${severity.toUpperCase()} ${message}`;
 
-        // File
-        if(this.options.file){
-            await fsPromises.appendFile(this.getFilepath(), `${fullLine}\n`, 'utf8');
-        }
-
         // Console
         if(this.options.console){
             if(severity === 'err'){
@@ -82,6 +77,11 @@ export const Logger = new class {
             else {
                 console.log(fullLine);
             }
+        }
+
+        // File
+        if(this.options.file){
+            await fsPromises.appendFile(this.getFilepath(), `${fullLine}\n`, 'utf8');
         }
     }
 
